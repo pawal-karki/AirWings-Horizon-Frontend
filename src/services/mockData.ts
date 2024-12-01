@@ -1,31 +1,24 @@
-// import { Flight } from '../types';
+// import { ScheduleItem, User } from '../types/index';
 
-// export const mockFlights: Flight[] = [
+
+
+// export const initialSchedule: ScheduleItem[] = [
 //   {
-//     id: '1',
-//     departureCity: 'Kathmandu',
-//     arrivalCity: 'Pokhara',
-//     departureTime: '10:00 AM',
-//     arrivalTime: '10:45 AM',
-//     price: 12500,
-//     availableSeats: 24,
+//     flight_id: '1',
+//     flight_number: 'AH101',
+//     route: 'Kathmandu - Pokhara',
+//     departure_time: '10:00',
+//     arrival_time: '10:45',
+//     frequency: 'Daily',
+//     status: 'active',
 //   },
 //   {
-//     id: '2',
-//     departureCity: 'Kathmandu',
-//     arrivalCity: 'Lukla',
-//     departureTime: '07:00 AM',
-//     arrivalTime: '07:35 AM',
-//     price: 15000,
-//     availableSeats: 18,
-//   },
-//   {
-//     id: '3',
-//     departureCity: 'Pokhara',
-//     arrivalCity: 'Kathmandu',
-//     departureTime: '14:00 PM',
-//     arrivalTime: '14:45 PM',
-//     price: 12500,
-//     availableSeats: 32,
+//     flight_id: '2',
+//     flight_number: 'AH102',
+//     route: 'Kathmandu - Lukla',
+//     departure_time: '07:00',
+//     arrival_time: '07:35',
+//     frequency: 'Mon, Wed, Fri',
+//     status: 'active',
 //   },
 // ];

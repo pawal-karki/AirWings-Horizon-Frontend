@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
-import { Calendar, Edit2, Save, X } from 'lucide-react';
-import { useAuthStore } from '../store/authStore';
-import { toast, Toaster } from 'react-hot-toast';
-import { format } from 'date-fns';
+"use client";
+
+import React, { useState } from "react";
+import { Calendar, Edit2, Save, X } from "lucide-react";
+import { useAuthStore } from "../store/authStore";
+import { toast, Toaster } from "react-hot-toast";
+import { format } from "date-fns";
 
 interface ScheduleItem {
   id: string;
@@ -11,27 +13,27 @@ interface ScheduleItem {
   departureTime: string;
   arrivalTime: string;
   frequency: string;
-  status: 'active' | 'cancelled' | 'delayed';
+  status: "active" | "cancelled" | "delayed";
 }
 
 const initialSchedule: ScheduleItem[] = [
   {
-    id: '1',
-    flightNumber: 'AH101',
-    route: 'Kathmandu - Pokhara',
-    departureTime: '10:00',
-    arrivalTime: '10:45',
-    frequency: 'Daily',
-    status: 'active',
+    id: "1",
+    flightNumber: "AH101",
+    route: "Kathmandu - Pokhara",
+    departureTime: "10:00",
+    arrivalTime: "10:45",
+    frequency: "Daily",
+    status: "active",
   },
   {
-    id: '2',
-    flightNumber: 'AH102',
-    route: 'Kathmandu - Lukla',
-    departureTime: '07:00',
-    arrivalTime: '07:35',
-    frequency: 'Mon, Wed, Fri',
-    status: 'active',
+    id: "2",
+    flightNumber: "AH102",
+    route: "Kathmandu - Lukla",
+    departureTime: "07:00",
+    arrivalTime: "07:35",
+    frequency: "Mon, Wed, Fri",
+    status: "active",
   },
 ];
 
@@ -49,12 +51,10 @@ export const Schedule: React.FC = () => {
   const handleSave = (id: string) => {
     if (!editForm) return;
 
-    setSchedule(schedule.map(item => 
-      item.id === id ? editForm : item
-    ));
+    setSchedule(schedule.map((item) => (item.id === id ? editForm : item)));
     setEditingId(null);
     setEditForm(null);
-    toast.success('Schedule updated successfully');
+    toast.success("Schedule updated successfully");
   };
 
   const handleCancel = () => {
@@ -68,9 +68,11 @@ export const Schedule: React.FC = () => {
       <div className="container mx-auto px-4">
         <div className="bg-white rounded-lg shadow-md p-6">
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold text-dark_purple">Flight Schedule</h1>
+            <h1 className="text-2xl font-bold text-dark_purple">
+              Flight Schedule
+            </h1>
             <p className="text-ash_gray">
-              Last updated: {format(new Date(), 'MMM dd, yyyy HH:mm')}
+              Last updated: {format(new Date(), "MMM dd, yyyy HH:mm")}
             </p>
           </div>
 
@@ -96,7 +98,7 @@ export const Schedule: React.FC = () => {
                   <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Status
                   </th>
-                  {user?.role === 'admin' && (
+                  {user?.role === "admin" && (
                     <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                       Actions
                     </th>
@@ -112,7 +114,12 @@ export const Schedule: React.FC = () => {
                           <input
                             type="text"
                             value={editForm?.flightNumber}
-                            onChange={(e) => setEditForm(prev => ({ ...prev!, flightNumber: e.target.value }))}
+                            onChange={(e) =>
+                              setEditForm((prev) => ({
+                                ...prev!,
+                                flightNumber: e.target.value,
+                              }))
+                            }
                             className="w-full p-1 border rounded"
                           />
                         </td>
@@ -120,7 +127,12 @@ export const Schedule: React.FC = () => {
                           <input
                             type="text"
                             value={editForm?.route}
-                            onChange={(e) => setEditForm(prev => ({ ...prev!, route: e.target.value }))}
+                            onChange={(e) =>
+                              setEditForm((prev) => ({
+                                ...prev!,
+                                route: e.target.value,
+                              }))
+                            }
                             className="w-full p-1 border rounded"
                           />
                         </td>
@@ -128,7 +140,12 @@ export const Schedule: React.FC = () => {
                           <input
                             type="time"
                             value={editForm?.departureTime}
-                            onChange={(e) => setEditForm(prev => ({ ...prev!, departureTime: e.target.value }))}
+                            onChange={(e) =>
+                              setEditForm((prev) => ({
+                                ...prev!,
+                                departureTime: e.target.value,
+                              }))
+                            }
                             className="w-full p-1 border rounded"
                           />
                         </td>
@@ -136,7 +153,12 @@ export const Schedule: React.FC = () => {
                           <input
                             type="time"
                             value={editForm?.arrivalTime}
-                            onChange={(e) => setEditForm(prev => ({ ...prev!, arrivalTime: e.target.value }))}
+                            onChange={(e) =>
+                              setEditForm((prev) => ({
+                                ...prev!,
+                                arrivalTime: e.target.value,
+                              }))
+                            }
                             className="w-full p-1 border rounded"
                           />
                         </td>
@@ -144,14 +166,24 @@ export const Schedule: React.FC = () => {
                           <input
                             type="text"
                             value={editForm?.frequency}
-                            onChange={(e) => setEditForm(prev => ({ ...prev!, frequency: e.target.value }))}
+                            onChange={(e) =>
+                              setEditForm((prev) => ({
+                                ...prev!,
+                                frequency: e.target.value,
+                              }))
+                            }
                             className="w-full p-1 border rounded"
                           />
                         </td>
                         <td className="px-6 py-4">
                           <select
                             value={editForm?.status}
-                            onChange={(e) => setEditForm(prev => ({ ...prev!, status: e.target.value as any }))}
+                            onChange={(e) =>
+                              setEditForm((prev) => ({
+                                ...prev!,
+                                status: e.target.value as any,
+                              }))
+                            }
                             className="w-full p-1 border rounded"
                           >
                             <option value="active">Active</option>
@@ -194,14 +226,20 @@ export const Schedule: React.FC = () => {
                           {item.frequency}
                         </td>
                         <td className="px-6 py-4 whitespace-nowrap">
-                          <span className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full
-                            ${item.status === 'active' ? 'bg-green-100 text-green-800' : 
-                              item.status === 'delayed' ? 'bg-yellow-100 text-yellow-800' :
-                              'bg-red-100 text-red-800'}`}>
+                          <span
+                            className={`px-2 inline-flex text-xs leading-5 font-semibold rounded-full
+                            ${
+                              item.status === "active"
+                                ? "bg-green-100 text-green-800"
+                                : item.status === "delayed"
+                                ? "bg-yellow-100 text-yellow-800"
+                                : "bg-red-100 text-red-800"
+                            }`}
+                          >
                             {item.status}
                           </span>
                         </td>
-                        {user?.role === 'admin' && (
+                        {user?.role === "admin" && (
                           <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900">
                             <button
                               onClick={() => handleEdit(item)}
@@ -223,3 +261,5 @@ export const Schedule: React.FC = () => {
     </div>
   );
 };
+
+export default Schedule;

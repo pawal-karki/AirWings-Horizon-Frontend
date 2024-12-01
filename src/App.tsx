@@ -1,13 +1,14 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
-import { Footer } from './components/Footer';
-import { Home } from './pages/Home';
-import { Login } from './pages/auth/Login';
-import { Signup } from './pages/auth/Signup';
-import { Flights } from './pages/Flights';
-import { Destinations } from './pages/Destinations';
-import { AdminDashboard } from './pages/admin/Dashboard';
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
+import { Home } from "./pages/Home";
+import { Login } from "./pages/auth/Login";
+import { Signup } from "./pages/auth/Signup";
+import { Flights } from "./pages/Flights";
+import { Destinations } from "./pages/Destinations";
+import { AdminDashboard } from "./pages/admin/Dashboard";
+import { Schedule } from "./pages/Schedule";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path="/flights" element={<Flights />} />
             <Route path="/destinations" element={<Destinations />} />
             <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/schedule" element={<Schedule />} />
           </Routes>
         </main>
         <Footer />
