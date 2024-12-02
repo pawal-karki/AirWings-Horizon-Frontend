@@ -23,22 +23,20 @@ export interface Flight {
   available_seats: number;
 }
 
-export interface Booking {
-  id: string;
-  userId: string;
-  flightId: string;
-  passengerName: string;
-  passengerEmail: string;
-  bookingDate: string;
-  status: 'confirmed' | 'pending' | 'cancelled';
-}
+// export interface Booking {
+//   id: string;
+//   userId: string;
+//   flightId: string;
+//   passengerName: string;
+//   passengerEmail: string;
+//   bookingDate: string;
+//   status: 'confirmed' | 'pending' | 'cancelled';
+// }
 
 export interface ScheduleItem {
-  flight_id: string;
-  flight_number: string;
-  route: string;
-  departure_time: string;
-  arrival_time: string;
+  id: number;
+  flight: number;
   frequency: string;
-  status: 'active' | 'cancelled' | 'delayed';
+  status: string;
+  flight_details: Flight;
 }

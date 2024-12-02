@@ -8,7 +8,7 @@ import { Signup } from "./pages/auth/Signup";
 import { Flights } from "./pages/Flights";
 import { Destinations } from "./pages/Destinations";
 import { AdminDashboard } from "./pages/admin/Dashboard";
-import { Schedule } from "./pages/Schedule";
+import Schedule from './pages/Schedule';
 
 function App() {
   return (
