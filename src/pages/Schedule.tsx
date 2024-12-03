@@ -50,25 +50,91 @@ const Schedule: React.FC = () => {
     if (!editForm) return;
 
     try {
-      await axios.put(
-        `http://localhost:8000/api/schedule/${editForm.id}`,
-        editForm
+      // Create a properly formatted request body
+      const requestBody = {
+        flight: editForm.flight,
+        frequency: editForm.frequency,
+        status: editForm.status,
+        flight_details: {
+          flight_id: editForm.flight_details.flight_id,
+          airline: editForm.flight_details.airline,
+          departure_city: editForm.flight_details.departure_city,
+          arrival_city: editForm.flight_details.arrival_city,
+        },
+      };
+
+      const response = await axios.put(
+        `http://localhost:8000/api/schedule/${editForm.id}/`, // Note the trailing slash
+        requestBody,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
       );
-      setSchedule(
-        schedule.map((item) => (item.id === editForm.id ? editForm : item))
-      );
-      setEditingId(null);
-      setEditForm(null);
-      toast.success("Schedule updated successfully");
+
+      if (response.status === 200) {
+        setSchedule(
+          schedule.map((item) =>
+            item.id === editForm.id ? response.data : item
+          )
+        );
+        setEditingId(null);
+        setEditForm(null);
+        toast.success("Schedule updated successfully");
+      }
     } catch (error) {
-      console.error("Error updating schedule:", error);
-      toast.error("Failed to update schedule");
+      if (axios.isAxiosError(error)) {
+        const errorMessage =
+          error.response?.data?.error ||
+          error.response?.data?.detail ||
+          "Failed to update schedule. Please try again.";
+        console.error("Error updating schedule:", errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error("Error updating schedule:", error);
+        toast.error("An unexpected error occurred while updating the schedule");
+      }
     }
   };
 
   const handleCancel = () => {
     setEditingId(null);
     setEditForm(null);
+  };
+
+  const handleDelete = async (id: number) => {
+    if (!window.confirm("Are you sure you want to delete this schedule?")) {
+      return;
+    }
+
+    try {
+      const response = await axios.delete(
+        `http://localhost:8000/api/schedule/${id}/`,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (response.status === 204) {
+        setSchedule(schedule.filter((item) => item.id !== id));
+        toast.success("Schedule deleted successfully");
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        const errorMessage =
+          error.response?.data?.error ||
+          error.response?.data?.detail ||
+          "Failed to delete schedule. Please try again.";
+        console.error("Error deleting schedule:", errorMessage);
+        toast.error(errorMessage);
+      } else {
+        console.error("Error deleting schedule:", error);
+        toast.error("An unexpected error occurred while deleting the schedule");
+      }
+    }
   };
 
   const getStatusColor = (status: string) => {
@@ -173,14 +239,19 @@ const Schedule: React.FC = () => {
                       </div>
                     </div>
 
-                    {/* Only show the edit button if the user is an admin */}
                     {user?.role === "admin" && (
-                      <div className="flex items-center justify-end">
+                      <div className="flex items-center justify-end space-x-2">
                         <button
                           onClick={() => handleEdit(item)}
                           className="inline-flex items-center px-4 py-2 border border-blue-600 text-sm font-medium rounded-md text-blue-600 bg-white hover:bg-blue-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                         >
                           Edit Details
+                        </button>
+                        <button
+                          onClick={() => handleDelete(item.id)}
+                          className="inline-flex items-center px-4 py-2 border border-red-600 text-sm font-medium rounded-md text-red-600 bg-white hover:bg-red-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500"
+                        >
+                          Delete
                         </button>
                       </div>
                     )}
