@@ -16,9 +16,9 @@ export const searchFlights = async (
         },
       }
     );
-    return response.data; // Assuming the API returns the flight data in response.data
+    return response.data; //  returns the flight data in response.data
   } catch (error) {
     console.error("Error fetching flights:", error);
-    throw error; // Propagate the error to handle it in the component
+    throw error; // the error to handle it in the component
   }
 };

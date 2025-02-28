@@ -1,4 +1,4 @@
-import React from "react";
+import type React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Plane, Map, Calendar, User, LogOut } from "lucide-react";
 import { useAuthStore } from "../store/authStore";
@@ -15,73 +15,80 @@ export const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-dark_purple text-honeydew p-4">
-      <div className="container mx-auto flex items-center justify-between">
-        <Link to="/" className="flex items-center space-x-2">
-          <Plane className="h-6 w-6" />
-          <span className="text-xl font-bold">Airwings Horizon</span>
-        </Link>
-
-        <div className="flex items-center space-x-6">
-          <Link
-            to="/flights"
-            className="flex items-center space-x-1 hover:text-naples_yellow"
-          >
-            <Plane className="h-5 w-5" />
-            <span>Flights</span>
+    <nav className="bg-gradient-to-r from-dark_purple to-purple-900 text-honeydew shadow-md">
+      <div className="container mx-auto px-4 py-9">
+        <div className="flex items-center justify-between">
+          <Link to="/" className="flex items-center space-x-2 group">
+            <div className="bg-naples_yellow/20 p-2 rounded-full group-hover:bg-naples_yellow/30 transition-colors">
+              <Plane className="h-6 w-6 text-naples_yellow group-hover:rotate-12 transition-transform" />
+            </div>
+            <span className="text-xl font-bold tracking-wide">
+              Airwings Horizon
+            </span>
           </Link>
 
-          <Link
-            to="/destinations"
-            className="flex items-center space-x-1 hover:text-naples_yellow"
-          >
-            <Map className="h-5 w-5" />
-            <span>Popular Destinations</span>
-          </Link>
+          <div className="flex items-center space-x-6">
+            <NavLink
+              to="/flights"
+              icon={<Plane className="h-5 w-5" />}
+              label="Flights"
+            />
+            <NavLink
+              to="/destinations"
+              icon={<Map className="h-5 w-5" />}
+              label="Popular Destinations"
+            />
+            <NavLink
+              to="/schedule"
+              icon={<Calendar className="h-5 w-5" />}
+              label="Schedule"
+            />
 
-          <Link
-            to="/schedule"
-            className="flex items-center space-x-1 hover:text-naples_yellow"
-          >
-            <Calendar className="h-5 w-5" />
-            <span>Schedule</span>
-          </Link>
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-4 ml-6 pl-6 border-l border-honeydew/20">
+                <span className="text-sm text-naples_yellow font-medium">
+                  Namaste, {user?.username}
+                </span>
 
-          {isAuthenticated ? (
-            <div className="flex items-center space-x-4">
-              {/* Personalized greeting */}
-              <span className="text-sm text-naples_yellow">
-                Namaste, {user?.username}
-              </span>
-
+                <NavLink
+                  to={user?.role === "admin" ? "/admin" : "/profile"}
+                  icon={<User className="h-5 w-5" />}
+                  label={user?.role === "admin" ? "Admin Dashboard" : "Profile"}
+                />
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center space-x-1 px-3 py-2 rounded-md hover:bg-honeydew/10 transition-colors"
+                >
+                  <LogOut className="h-5 w-5" />
+                  <span>Logout</span>
+                </button>
+              </div>
+            ) : (
               <Link
-                to={user?.role === "admin" ? "/admin" : "/profile"}
-                className="flex items-center space-x-1 hover:text-naples_yellow"
+                to="/login"
+                className="flex items-center space-x-2 bg-naples_yellow text-dark_purple font-medium px-4 py-2 rounded-md hover:bg-naples_yellow/90 transition-colors"
               >
                 <User className="h-5 w-5" />
-                <span>
-                  {user?.role === "admin" ? "Admin Dashboard" : "Profile"}
-                </span>
+                <span>Login</span>
               </Link>
-              <button
-                onClick={handleLogout}
-                className="flex items-center space-x-1 hover:text-naples_yellow"
-              >
-                <LogOut className="h-5 w-5" />
-                <span>Logout</span>
-              </button>
-            </div>
-          ) : (
-            <Link
-              to="/login"
-              className="flex items-center space-x-1 hover:text-naples_yellow"
-            >
-              <User className="h-5 w-5" />
-              <span>Login</span>
-            </Link>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </nav>
   );
 };
+
+const NavLink: React.FC<{
+  to: string;
+  icon: React.ReactNode;
+  label: string;
+}> = ({ to, icon, label }) => (
+  <Link
+    to={to}
+    className="flex items-center space-x-1 px-3 py-2 rounded-md hover:bg-honeydew/10 transition-colors"
+  >
+    {icon}
+    <span>{label}</span>
+  </Link>
+);
