@@ -54,9 +54,9 @@ export const Home: React.FC = () => {
         <img
           src="https://images.unsplash.com/photo-1544735716-392fe2489ffa"
           alt="Nepal Mountains"
-          className="absolute inset-0 w-full h-full object-cover opacity-30"
+          className="absolute inset-0 w-full h-full object-cover opacity-90"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-dark_purple/90 to-dark_purple/70">
+        <div className="absolute inset-0 bg-gradient-to-r from-dark_purple/70 to-dark_purple/10">
           <div className="container mx-auto px-6 h-full flex items-center">
             <div className="max-w-2xl text-honeydew animate-fade-in-up">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-dark_purple/50 text-naples_yellow text-sm font-medium mb-6">

@@ -5,10 +5,10 @@ export default {
     extend: {
       colors: {
         dark_purple: {
-          DEFAULT: "#160c28",
-          100: "#040208",
-          500: "#160c28",
-          900: "#cab8ea",
+          DEFAULT: "#003399",
+          100: "#b3c7f0",
+          500: "#003399",
+          900: "#001a66",
         },
         naples_yellow: {
           DEFAULT: "#efcb68",
