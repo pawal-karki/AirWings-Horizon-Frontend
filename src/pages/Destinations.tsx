@@ -18,14 +18,16 @@ const destinations = [
     id: "1",
     name: "Pokhara",
     imageUrl: pokharaImg,
-    description: "Gateway to the Annapurna Range with stunning lake views",
+    description:
+      "A picturesque city at the foothills of the Annapurna Range, known for its tranquil lakes, adventure sports, and breathtaking landscapes.",
     highlights: ["Phewa Lake", "World Peace Pagoda", "Sarangkot Viewpoint"],
   },
   {
     id: "2",
     name: "Lukla",
     imageUrl: luklaImg,
-    description: "Starting point for Everest Base Camp treks",
+    description:
+      "A small mountain town serving as the gateway to Everest Base Camp, famous for its thrilling airport and stunning Himalayan views.",
     highlights: [
       "Tenzing-Hillary Airport",
       "Mountain Views",
@@ -36,49 +38,56 @@ const destinations = [
     id: "3",
     name: "Bharatpur",
     imageUrl: bharatpurImg,
-    description: "Gateway to Chitwan National Park",
+    description:
+      "A growing city and the entry point to Chitwan National Park, home to diverse wildlife, lush forests, and exciting jungle safaris.",
     highlights: ["Wildlife Safari", "Bird Watching", "Cultural Tours"],
   },
   {
     id: "4",
     name: "Jomsom",
     imageUrl: jomsomImg,
-    description: "Desert-like valley in the Himalayas",
+    description:
+      "A high-altitude town in the Mustang region, offering a unique desert-like landscape, rich Tibetan culture, and breathtaking views.",
     highlights: ["Mustang Region", "Apple Orchards", "Buddhist Monasteries"],
   },
   {
     id: "5",
     name: "Simara",
     imageUrl: simaraImg,
-    description: "Industrial hub with scenic surroundings",
+    description:
+      "An emerging industrial hub in Nepal, surrounded by greenery and known for its commercial activities and easy connectivity.",
     highlights: ["Business District", "Local Markets", "Transit Point"],
   },
   {
     id: "6",
     name: "Biratnagar",
     imageUrl: biratnagarImg,
-    description: "Major city in eastern Nepal",
+    description:
+      "One of Nepal’s largest cities, famous for its vibrant trade, rich cultural heritage, and a variety of shopping and dining experiences.",
     highlights: ["Cultural Heritage", "Shopping Districts", "Local Cuisine"],
   },
   {
     id: "7",
     name: "Nepalgunj",
     imageUrl: nepalgunjImg,
-    description: "Gateway to western Nepal",
+    description:
+      "A bustling trade center and the gateway to western Nepal, known for its historic temples, local bazaars, and diverse culture.",
     highlights: ["Bageshwori Temple", "Local Bazaars", "Border Town"],
   },
   {
     id: "8",
     name: "Tumlingtar",
     imageUrl: tumlingtarImg,
-    description: "Access point to Makalu region",
+    description:
+      "A peaceful town providing access to the Makalu region, offering stunning trekking routes, cultural experiences, and mountain scenery.",
     highlights: ["Mountain Views", "Trekking Routes", "Local Culture"],
   },
   {
     id: "9",
     name: "Janakpur",
     imageUrl: janakpurImg,
-    description: "Religious and cultural center",
+    description:
+      "A sacred city and a major Hindu pilgrimage site, known for its magnificent temples, rich traditions, and historical significance.",
     highlights: ["Janaki Temple", "Religious Sites", "Cultural Heritage"],
   },
 ];

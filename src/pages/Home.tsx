@@ -11,7 +11,8 @@ const popularDestinations = [
     id: "1",
     name: "Pokhara",
     imageUrl: pokharaImg,
-    description: "Gateway to the Annapurna Range with stunning lake views",
+    description:
+      "A picturesque city nestled beside Phewa Lake, serving as the gateway to the Annapurna Range, renowned for its serene ambiance.",
     rating: 4.9,
     flightTime: "25 min",
   },
@@ -19,7 +20,8 @@ const popularDestinations = [
     id: "2",
     name: "Lukla",
     imageUrl: luklaImg,
-    description: "Starting point for Everest Base Camp treks",
+    description:
+      "A scenic mountain town and the gateway to Everest Base Camp, known for its challenging airport and breathtaking landscapes.",
     rating: 4.7,
     flightTime: "40 min",
   },
@@ -27,7 +29,8 @@ const popularDestinations = [
     id: "3",
     name: "Bharatpur",
     imageUrl: bharatpurImg,
-    description: "Gateway to Chitwan National Park",
+    description:
+      "A bustling city and the gateway to Chitwan National Park, famous for its rich wildlife, lush forests, and thrilling jungle safaris.",
     rating: 4.5,
     flightTime: "60 min",
   },
