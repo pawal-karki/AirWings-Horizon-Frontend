@@ -1,12 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { ArrowRight, Plane, Star, ChevronRight } from "lucide-react";
+import pokharaImg from "../assets/images/Pokhara.jpg";
+import luklaImg from "../assets/images/Lukla.jpg";
+import bharatpurImg from "../assets/images/Bharatpur.jpg";
+import AirImg from "../assets/images/Airplane.jpg";
 
 const popularDestinations = [
   {
     id: "1",
     name: "Pokhara",
-    imageUrl: "https://images.unsplash.com/photo-1605640840605-14ac1855827b",
+    imageUrl: pokharaImg,
     description: "Gateway to the Annapurna Range with stunning lake views",
     rating: 4.9,
     flightTime: "25 min",
@@ -14,7 +18,7 @@ const popularDestinations = [
   {
     id: "2",
     name: "Lukla",
-    imageUrl: "https://images.unsplash.com/photo-1544735716-392fe2489ffa",
+    imageUrl: luklaImg,
     description: "Starting point for Everest Base Camp treks",
     rating: 4.7,
     flightTime: "40 min",
@@ -22,10 +26,10 @@ const popularDestinations = [
   {
     id: "3",
     name: "Bharatpur",
-    imageUrl: "https://images.unsplash.com/photo-1605640840605-14ac1855827b",
+    imageUrl: bharatpurImg,
     description: "Gateway to Chitwan National Park",
     rating: 4.5,
-    flightTime: "20 min",
+    flightTime: "60 min",
   },
 ];
 
@@ -52,7 +56,7 @@ export const Home: React.FC = () => {
       {/* Hero Section */}
       <div className="relative h-[650px] bg-dark_purple overflow-hidden">
         <img
-          src="https://images.unsplash.com/photo-1544735716-392fe2489ffa"
+          src={AirImg}
           alt="Nepal Mountains"
           className="absolute inset-0 w-full h-full object-cover opacity-90"
         />

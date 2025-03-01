@@ -1,21 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { MapPin, ArrowRight } from "lucide-react";
 
-// Define destinations with direct image URLs
+// Import local images
+import pokharaImg from "../assets/images/Pokhara.jpg";
+import luklaImg from "../assets/images/Lukla.jpg";
+import bharatpurImg from "../assets/images/Bharatpur.jpg";
+import jomsomImg from "../assets/images/Jomsom.png";
+import simaraImg from "../assets/images/Simara.jpg";
+import biratnagarImg from "../assets/images/Biratnagar.jpg";
+import nepalgunjImg from "../assets/images/Nepalgunj.jpg";
+import tumlingtarImg from "../assets/images/Tumlingtar.jpg";
+import janakpurImg from "../assets/images/Janakpur.jpg";
+
+// Define destinations
 const destinations = [
   {
     id: "1",
     name: "Pokhara",
-    imageUrl:
-      "https://images.unsplash.com/photo-1605640840605-14ac1855827b?auto=format&fit=crop&w=800&q=80",
+    imageUrl: pokharaImg,
     description: "Gateway to the Annapurna Range with stunning lake views",
     highlights: ["Phewa Lake", "World Peace Pagoda", "Sarangkot Viewpoint"],
   },
   {
     id: "2",
     name: "Lukla",
-    imageUrl:
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+    imageUrl: luklaImg,
     description: "Starting point for Everest Base Camp treks",
     highlights: [
       "Tenzing-Hillary Airport",
@@ -26,66 +35,51 @@ const destinations = [
   {
     id: "3",
     name: "Bharatpur",
-    imageUrl:
-      "https://images.unsplash.com/photo-1605640840605-14ac1855827b?auto=format&fit=crop&w=800&q=80",
+    imageUrl: bharatpurImg,
     description: "Gateway to Chitwan National Park",
     highlights: ["Wildlife Safari", "Bird Watching", "Cultural Tours"],
   },
   {
     id: "4",
     name: "Jomsom",
-    imageUrl:
-      "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80",
+    imageUrl: jomsomImg,
     description: "Desert-like valley in the Himalayas",
     highlights: ["Mustang Region", "Apple Orchards", "Buddhist Monasteries"],
   },
   {
     id: "5",
     name: "Simara",
-    imageUrl:
-      "https://images.unsplash.com/photo-1583395145517-1e3177037600?auto=format&fit=crop&w=800&q=80",
+    imageUrl: simaraImg,
     description: "Industrial hub with scenic surroundings",
     highlights: ["Business District", "Local Markets", "Transit Point"],
   },
   {
     id: "6",
     name: "Biratnagar",
-    imageUrl:
-      "https://images.unsplash.com/photo-1583395145517-1e3177037600?auto=format&fit=crop&w=800&q=80",
+    imageUrl: biratnagarImg,
     description: "Major city in eastern Nepal",
     highlights: ["Cultural Heritage", "Shopping Districts", "Local Cuisine"],
   },
   {
     id: "7",
     name: "Nepalgunj",
-    imageUrl:
-      "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&w=800&q=80",
+    imageUrl: nepalgunjImg,
     description: "Gateway to western Nepal",
     highlights: ["Bageshwori Temple", "Local Bazaars", "Border Town"],
   },
   {
     id: "8",
     name: "Tumlingtar",
-    imageUrl:
-      "https://images.unsplash.com/photo-1605640840605-14ac1855827b?auto=format&fit=crop&w=800&q=80",
+    imageUrl: tumlingtarImg,
     description: "Access point to Makalu region",
     highlights: ["Mountain Views", "Trekking Routes", "Local Culture"],
   },
   {
     id: "9",
     name: "Janakpur",
-    imageUrl:
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?auto=format&fit=crop&w=800&q=80",
+    imageUrl: janakpurImg,
     description: "Religious and cultural center",
     highlights: ["Janaki Temple", "Religious Sites", "Cultural Heritage"],
-  },
-  {
-    id: "10",
-    name: "Surkhet",
-    imageUrl:
-      "https://images.unsplash.com/photo-1583395145517-1e3177037600?auto=format&fit=crop&w=800&q=80",
-    description: "Provincial capital with natural beauty",
-    highlights: ["Bulbule Lake", "Kakre Bihar", "Deuti Bajai Temple"],
   },
 ];
 
