@@ -53,7 +53,7 @@ const testimonials = [
   },
 ];
 
-export const Home: React.FC = () => {
+export const Home = () => {
   return (
     <div className="min-h-screen bg-honeydew">
       {/* Hero Section */}
