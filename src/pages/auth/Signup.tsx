@@ -62,18 +62,18 @@ export const Signup: React.FC = () => {
         role: formData.role,
       });
 
-      // Destructure response data
-      const { token, username, role } = response.data;
+      // // Destructure response data
+      // const { token, username, role } = response.data;
 
-      // Update auth store
-      setUser({
-        username,
-        role,
-        token,
-      });
+      // // Update auth store
+      // setUser({
+      //   username,
+      //   role,
+      //   token,
+      // });
 
-      // Set token in axios default headers
-      axios.defaults.headers.common["Authorization"] = `Token ${token}`;
+      // // Set token in axios default headers
+      // axios.defaults.headers.common["Authorization"] = `Token ${token}`;
 
       // Redirect to login or home page
       navigate("/login");

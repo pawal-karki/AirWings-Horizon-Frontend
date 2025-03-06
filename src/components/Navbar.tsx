@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Plane, Map, Calendar, User, LogOut } from "lucide-react";
 import { useAuthStore } from "../store/authStore";
 import { toast } from "react-hot-toast";
-import PlaneIcon from "../assets/images/Airwings.png";
+import PlaneIcon from "../assets/images/AirwingsLogoTransparent.svg";
 
 export const Navbar: React.FC = () => {
   const { isAuthenticated, user, logout } = useAuthStore();
@@ -19,7 +19,7 @@ export const Navbar: React.FC = () => {
     <nav className="bg-gradient-to-r from-dark_purple to-purple-900 text-honeydew shadow-md">
       <div className="">
         <div className="h-32 flex items-center justify-between px-4 py-3">
-          <div className="w-64 h-48 flex-shrink-0 flex-grow-0 relative mr-6">
+          <div className="w-64 h-56 flex-shrink-0 flex-grow-0 relative mr-6">
             <Link to="/" className="absolute inset-0 flex items-center">
               <img
                 src={PlaneIcon || "/placeholder.svg"}
