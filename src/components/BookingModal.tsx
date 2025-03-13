@@ -17,24 +17,53 @@ export const BookingModal: React.FC<BookingModalProps> = ({
     passengerName: "",
     passengerEmail: "",
   });
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
-      // Generate booking ID (in production this would come from the backend)
-      const bookingId = `BK${Math.random()
-        .toString(36)
-        .substr(2, 9)
-        .toUpperCase()}`;
+      // Prepare data for the API based on its requirements
+      const bookingData = {
+        passenger_name: formData.passengerName,
+        flight: flight.id, 
+      };
+
+      // Send data to backend API
+      const response = await fetch("http://127.0.0.1:8000/api/bookings/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(bookingData),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.detail || "Failed to create booking");
+      }
+
+      const bookingResult = await response.json();
+
+      // Generate booking ID (using the one from backend if available)
+      const bookingId = bookingResult.id
+        ? `BK${bookingResult.id}`
+        : `BK${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
+
+      // Use the booking_date from the API response if available, otherwise use current date
+      const bookingDate = bookingResult.booking_date
+        ? new Date(bookingResult.booking_date)
+        : new Date();
 
       // Generate PDF ticket
       const pdfData = generateTicketPDF({
         flight,
         passengerName: formData.passengerName,
-        passengerEmail: formData.passengerEmail,
+        passengeremail: formData.passengerEmail,
         bookingId,
-        bookingDate: new Date(),
+        bookingDate,
+        flightId: bookingResult.flight_id || flight.flight_id, // Use flight ID from response or flight object
       });
 
       // Create a link element and trigger download
@@ -48,8 +77,14 @@ export const BookingModal: React.FC<BookingModalProps> = ({
       toast.success("Booking successful! Your ticket has been downloaded.");
       onClose();
     } catch (error) {
-      console.error("Error generating ticket:", error);
-      toast.error("Failed to generate ticket. Please try again.");
+      console.error("Error processing booking:", error);
+      toast.error(
+        error instanceof Error
+          ? error.message
+          : "Failed to process booking. Please try again."
+      );
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -107,9 +142,10 @@ export const BookingModal: React.FC<BookingModalProps> = ({
 
           <button
             type="submit"
-            className="w-full bg-dark_purple text-honeydew py-2 rounded-md hover:bg-dark_purple-900 transition-colors"
+            disabled={isLoading}
+            className="w-full bg-dark_purple text-honeydew py-2 rounded-md hover:bg-dark_purple-900 transition-colors disabled:bg-gray-400"
           >
-            Confirm Booking
+            {isLoading ? "Processing..." : "Confirm Booking"}
           </button>
         </form>
       </div>

@@ -2,13 +2,14 @@
 
 import type React from "react";
 import { useState, useEffect } from "react";
-import { RefreshCw, ChevronDown, ChevronUp, Search, Eye } from "lucide-react";
+import { RefreshCw, ChevronDown, ChevronUp, Search } from "lucide-react";
 
 interface Booking {
   id: number;
   passenger_name: string;
   booking_date: string;
   flight: number;
+  flight_id: string;
 }
 
 export const Bookings: React.FC = () => {
@@ -84,7 +85,8 @@ export const Bookings: React.FC = () => {
         return (
           booking.passenger_name.toLowerCase().includes(searchLower) ||
           booking.id.toString().includes(searchLower) ||
-          booking.flight.toString().includes(searchLower)
+          booking.flight.toString().includes(searchLower) ||
+          (booking.flight_id && booking.flight_id.toLowerCase().includes(searchLower))
         );
       }
       return true;
@@ -103,8 +105,15 @@ export const Bookings: React.FC = () => {
         return sortOrder === "asc"
           ? dateA.getTime() - dateB.getTime()
           : dateB.getTime() - dateA.getTime();
+      } else if (sortField === "flight_id") {
+        // Sort by flight_id string
+        const valueA = String(a[sortField] || "").toLowerCase();
+        const valueB = String(b[sortField] || "").toLowerCase();
+        return sortOrder === "asc"
+          ? valueA.localeCompare(valueB)
+          : valueB.localeCompare(valueA);
       } else {
-        // Sort by string fields
+        // Sort by other string fields
         const valueA = String(a[sortField]).toLowerCase();
         const valueB = String(b[sortField]).toLowerCase();
         return sortOrder === "asc"
@@ -124,14 +133,6 @@ export const Bookings: React.FC = () => {
   for (let i = 1; i <= totalPages; i++) {
     pageNumbers.push(i);
   }
-
-  // View booking details (placeholder function)
-  const handleViewBooking = (id: number) => {
-    console.log(`View booking with ID: ${id}`);
-    alert(
-      `View booking details functionality would be implemented here for booking ID: ${id}`
-    );
-  };
 
   return (
     <div className="w-full">
@@ -235,6 +236,20 @@ export const Bookings: React.FC = () => {
                   </th>
                   <th
                     className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
+                    onClick={() => handleSort("flight_id")}
+                  >
+                    <div className="flex items-center">
+                      Flight Number
+                      {sortField === "flight_id" &&
+                        (sortOrder === "asc" ? (
+                          <ChevronUp className="h-4 w-4 ml-1" />
+                        ) : (
+                          <ChevronDown className="h-4 w-4 ml-1" />
+                        ))}
+                    </div>
+                  </th>
+                  <th
+                    className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider cursor-pointer"
                     onClick={() => handleSort("booking_date")}
                   >
                     <div className="flex items-center">
@@ -246,9 +261,6 @@ export const Bookings: React.FC = () => {
                           <ChevronDown className="h-4 w-4 ml-1" />
                         ))}
                     </div>
-                  </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    Actions
                   </th>
                 </tr>
               </thead>
@@ -267,21 +279,14 @@ export const Bookings: React.FC = () => {
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                         <span className="font-medium">
-                          Flight #{booking.flight}
+                          #{booking.flight}
                         </span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                        {formatDate(booking.booking_date)}
+                        {booking.flight_id || "N/A"}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                        <div className="flex items-center space-x-2">
-                          <button
-                            onClick={() => handleViewBooking(booking.id)}
-                            className="text-indigo-600 hover:text-indigo-900 transition-colors"
-                          >
-                            <Eye className="h-4 w-4" />
-                          </button>
-                        </div>
+                        {formatDate(booking.booking_date)}
                       </td>
                     </tr>
                   ))
@@ -304,7 +309,9 @@ export const Bookings: React.FC = () => {
             <div className="text-sm text-gray-700">
               Showing{" "}
               <span className="font-medium">
-                {(currentPage - 1) * itemsPerPage + 1}
+                {filteredAndSortedBookings.length > 0 
+                  ? (currentPage - 1) * itemsPerPage + 1 
+                  : 0}
               </span>{" "}
               to{" "}
               <span className="font-medium">
