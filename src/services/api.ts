@@ -3,7 +3,7 @@ import { Flight } from "../types";
 
 export const searchFlights = async (
   departureCity: string,
-  arrivalCity: string
+  arrivalCity: string,
 ): Promise<Flight[]> => {
   try {
     const response = await axios.get(
