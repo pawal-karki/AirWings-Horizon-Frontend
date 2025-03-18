@@ -86,7 +86,8 @@ export const Bookings: React.FC = () => {
           booking.passenger_name.toLowerCase().includes(searchLower) ||
           booking.id.toString().includes(searchLower) ||
           booking.flight.toString().includes(searchLower) ||
-          (booking.flight_id && booking.flight_id.toLowerCase().includes(searchLower))
+          (booking.flight_id &&
+            booking.flight_id.toLowerCase().includes(searchLower))
         );
       }
       return true;
@@ -278,9 +279,7 @@ export const Bookings: React.FC = () => {
                         {booking.passenger_name}
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
-                        <span className="font-medium">
-                          #{booking.flight}
-                        </span>
+                        <span className="font-medium">#{booking.flight}</span>
                       </td>
                       <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700">
                         {booking.flight_id || "N/A"}
@@ -309,8 +308,8 @@ export const Bookings: React.FC = () => {
             <div className="text-sm text-gray-700">
               Showing{" "}
               <span className="font-medium">
-                {filteredAndSortedBookings.length > 0 
-                  ? (currentPage - 1) * itemsPerPage + 1 
+                {filteredAndSortedBookings.length > 0
+                  ? (currentPage - 1) * itemsPerPage + 1
                   : 0}
               </span>{" "}
               to{" "}

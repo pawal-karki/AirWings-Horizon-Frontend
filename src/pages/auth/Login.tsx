@@ -14,6 +14,7 @@ import {
 import { useAuthStore } from "../../store/authStore";
 import axios from "axios";
 import { motion } from "framer-motion";
+import loginImg from "../../assets/images/Login.jpg";
 
 const API_BASE_URL = "http://localhost:8000/api/auth";
 
@@ -100,8 +101,7 @@ export const Login: React.FC = () => {
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage:
-                  "url('https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')",
+                backgroundImage: `url(${loginImg})`,
               }}
             ></div>
 
@@ -256,9 +256,9 @@ export const Login: React.FC = () => {
                 </motion.div>
               </form>
 
-              <div className="mt-6 flex items-center justify-between">
+              <div className="mt-6 flex items-center">
                 <div className="w-full border-t border-gray-200"></div>
-                <span className="px-2 text-gray-500 text-sm bg-white">
+                <span className="px-3 text-gray-500 text-sm bg-white whitespace-nowrap">
                   or continue with
                 </span>
                 <div className="w-full border-t border-gray-200"></div>

@@ -8,7 +8,6 @@ import {
   User,
   Lock,
   Mail,
-  UserCog,
   Loader2,
   ArrowRight,
   CheckCircle,
@@ -18,6 +17,7 @@ import {
 } from "lucide-react";
 import { useAuthStore } from "../../store/authStore";
 import { motion } from "framer-motion";
+import registerImg from "../../assets/images/Register.jpg";
 
 // Base API URL
 const API_BASE_URL = "http://localhost:8000/api/auth";
@@ -143,13 +143,11 @@ export const Signup: React.FC = () => {
             <div
               className="absolute inset-0 bg-cover bg-center"
               style={{
-                backgroundImage:
-                  "url('https://images.unsplash.com/photo-1507812984078-917a274065be?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80')",
+                backgroundImage: `url(${registerImg})`,
               }}
-            ></div>
-
-            {/* Overlay gradient */}
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-900/80 to-purple-900/60"></div>
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 to-purple-900/80"></div>
+            </div>
 
             <div className="relative z-10 h-full p-12 flex flex-col justify-between">
               <div>

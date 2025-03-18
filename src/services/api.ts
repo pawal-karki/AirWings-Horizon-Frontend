@@ -12,7 +12,6 @@ export const searchFlights = async (
         params: {
           departure_city: departureCity,
           arrival_city: arrivalCity,
-
         },
       }
     );
